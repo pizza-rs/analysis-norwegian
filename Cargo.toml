@@ -2,7 +2,7 @@
 name = "pizza-analysis-norwegian"
 version = "0.1.0"
 edition = "2021"
-description = "Norwegian language analysis components for Pizza search engine"
+description = "Norwegian text analysis plugin for INFINI Pizza"
 license = "MIT"
 
 [features]

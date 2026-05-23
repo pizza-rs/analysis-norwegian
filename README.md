@@ -1,48 +1,60 @@
-# pizza-analysis-norwegian
+<div align="center">
 
-Norwegian language analysis (Bokmål and Nynorsk) with light stemmer and stop words.
+# 🇳🇴 pizza-analysis-norwegian
 
-Part of the [Pizza](https://pizza.rs) search engine.
+**Norwegian text analysis plugin for [INFINI Pizza](https://pizza.rs)**
+
+[![Crate](https://img.shields.io/badge/crate-pizza--analysis--norwegian-blue)](https://github.com/pizza-rs/analysis-norwegian)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+</div>
+
+---
+
+## Overview
+
+Norwegian (Bokmål) language analysis with light stemming and stop words.
 
 ## Components
 
-| Name | Type | Description |
-|------|------|-------------|
-| `norwegian_stem` | Token Filter | Norwegian light stemmer — handles noun, adjective, and verb suffixes |
-| `norwegian_stop` | Token Filter | Norwegian stop words filter (172 words) |
-| `norwegian` | Analyzer | Full pipeline: lowercase → stop → stem |
+| Type | Name | Description |
+|:-----|:-----|:------------|
+| TokenFilter | `norwegian_light_stem` | Norwegian light stemmer |
+| TokenFilter | `norwegian_stop` | Norwegian stop words (172 entries) |
+| Analyzer | `norwegian` | Full pipeline: lowercase → light_stem → stop |
 
-## Usage
+## Example
 
-### Built-in Analyzer
+```rust
+use pizza_engine::analysis::AnalysisFactory;
 
-```json
-{
-  "analyzer": {
-    "type": "norwegian"
-  }
-}
+let mut factory = AnalysisFactory::new();
+pizza_analysis_norwegian::register_all(&mut factory);
+
+let analyzer = factory.get_analyzer("norwegian").unwrap();
+// "husene" (the houses) → "hus"
 ```
 
-### Custom Pipeline
+## Installation
 
-```json
-{
-  "analyzer": {
-    "type": "custom",
-    "tokenizer": "standard",
-    "filter": ["norwegian_stem", "norwegian_stop"]
-  }
-}
+```toml
+[dependencies]
+pizza-analysis-norwegian = "0.1"
+```
+
+Or via `pizza-analysis-all`:
+
+```toml
+[dependencies]
+pizza-analysis-all = { version = "0.1", features = ["norwegian"] }
 ```
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT
 
-## Related Crates
+---
 
-- [analysis-core](https://github.com/pizza-rs/analysis-core) — Core analysis components and pipeline
-- [analysis-icu](https://github.com/pizza-rs/analysis-icu) — ICU Unicode normalization and tokenization
-- [analysis-english](https://github.com/pizza-rs/analysis-english) — English analysis
-- [analysis-all](https://github.com/pizza-rs/analysis-all) — Meta-crate registering all analyzers
+<div align="center">
+<sub>Part of the <a href="https://pizza.rs">INFINI Pizza</a> ecosystem</sub>
+</div>

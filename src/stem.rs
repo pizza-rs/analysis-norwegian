@@ -34,16 +34,9 @@ impl TokenFilter for NorwegianLightStemFilter {
 fn stem_norwegian(word: &str) -> String {
     let suffixes: &[&str] = &[
         // Longest first
-        "hetenes", "hetene", "hetens",
-        "heten", "heter",
-        "elsene", "elsen", "elser",
-        "ingene", "inger", "ingen",
-        "erende", "ernes", "ering",
-        "enes", "erte",
-        "ene", "ane", "ere", "est",
-        "ing", "het", "ens", "lig", "isk",
-        "ert", "dom",
-        "en", "er", "et", "ar", "es", "as", "te",
+        "hetenes", "hetene", "hetens", "heten", "heter", "elsene", "elsen", "elser", "ingene",
+        "inger", "ingen", "erende", "ernes", "ering", "enes", "erte", "ene", "ane", "ere", "est",
+        "ing", "het", "ens", "lig", "isk", "ert", "dom", "en", "er", "et", "ar", "es", "as", "te",
         "e", "a", "s",
     ];
 

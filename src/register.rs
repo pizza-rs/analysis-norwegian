@@ -10,7 +10,10 @@ use crate::stop::NorwegianStopFilter;
 
 /// Register all Norwegian analysis components.
 pub fn register_all(factory: &mut AnalysisFactory) {
-    factory.register_token_filter("norwegian_light_stem", Box::new(NorwegianLightStemFilter::new()));
+    factory.register_token_filter(
+        "norwegian_light_stem",
+        Box::new(NorwegianLightStemFilter::new()),
+    );
     factory.register_token_filter("norwegian_stop", Box::new(NorwegianStopFilter::new()));
 
     let filters: Vec<Box<dyn TokenFilter>> = vec![

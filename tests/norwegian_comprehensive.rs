@@ -1,7 +1,9 @@
 //! Comprehensive tests for pizza-analysis-norwegian.
 
 use pizza_analysis_norwegian::*;
-use pizza_engine::analysis::{AnalysisFactory, Token, TokenFilter};
+use pizza_engine::analysis::AnalysisFactory;
+use pizza_engine::analysis::Token;
+use pizza_engine::analysis::TokenFilter;
 
 fn make_token(term: &str) -> Token<'_> {
     Token::new(term, 0, term.len() as u32, 0)
@@ -106,7 +108,9 @@ fn stop_construction() {
 #[test]
 fn stop_filters_common_words() {
     let f = NorwegianStopFilter::new();
-    let stop_words = ["og", "i", "er", "det", "en", "et", "på", "til", "for", "med"];
+    let stop_words = [
+        "og", "i", "er", "det", "en", "et", "på", "til", "for", "med",
+    ];
     for word in &stop_words {
         let mut token = make_token(word);
         let (deleted, _) = f.filter(&mut token);
